@@ -6,8 +6,13 @@ namespace CoreCourse.CSharpFeatures.Models
         public string Title { get; set; }
         public int? Pages { get; set; }
         public string Genre { get; set; } = "Novel";
-        public bool IsLent { get; } = true;
+        public bool IsLent { get; }
         public Book Sequel { get; set; }
+
+        public Book(bool islent = false)
+        {
+            IsLent = islent;
+        }
 
         public static Book[] GetAll()
         {
@@ -17,7 +22,7 @@ namespace CoreCourse.CSharpFeatures.Models
                 Genre = "Fantasy",
                 Sequel = null
             };
-            Book lotr2 = new Book {
+            Book lotr2 = new Book(true) {
                 Title = "The Two Towers",
                 Pages = 322,
                 Genre = "Fantasy",
@@ -29,7 +34,7 @@ namespace CoreCourse.CSharpFeatures.Models
                 Genre = "Fantasy",
                 Sequel = lotr2
             };
-            Book littleprince = new Book {
+            Book littleprince = new Book(true) {
                 Title = "The Little Prince",
                 Pages = 83,
                 Sequel = null
