@@ -13,6 +13,15 @@ namespace CoreCourse.CSharpFeatures.Models
 
             return totalPages;
         }
+
+        public static IEnumerable<Book> GetByMinimumPages(
+            this IEnumerable<Book> bookCollection, int minimumPages)
+        {
+            foreach (Book book in bookCollection)
+                if ((book?.Pages ?? 0) >= minimumPages)
+                    yield return book;
+        }
+
     }
 }
 

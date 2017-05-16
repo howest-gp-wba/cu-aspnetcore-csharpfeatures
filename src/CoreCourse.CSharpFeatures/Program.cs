@@ -1,10 +1,8 @@
 ﻿using CoreCourse.CSharpFeatures.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Diagnostics;
-using System.Threading;
 using System.Globalization;
+using System.Linq;
 
 namespace CoreCourse.CSharpFeatures
 {
@@ -32,6 +30,9 @@ namespace CoreCourse.CSharpFeatures
             //calculate total pages of all known books
             int totalPagesKnownBooks = Book.GetAll().TotalPages();
             bookInfos.Add($"Total pages of known books: {totalPagesKnownBooks:N0}");
+            //count the number of known books with more than 350 pages
+            int numberOfknownBooksWithOver350p = Book.GetAll().GetByMinimumPages(350).Count();
+            bookInfos.Add($"# books with > 350 pages: {numberOfknownBooksWithOver350p:N0}");
 
             PrintStrings(bookInfos);
 
