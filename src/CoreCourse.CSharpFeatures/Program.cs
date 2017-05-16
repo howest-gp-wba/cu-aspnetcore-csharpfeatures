@@ -23,6 +23,13 @@ namespace CoreCourse.CSharpFeatures
                 string sequelTitle = book?.Sequel?.Title ?? "[no sequels]";
                 bookInfos.Add($"Title: {title}, Pages: {pages:N0}, Sequel: {sequelTitle}");
             }
+
+            BookRepository bookRepository = new BookRepository { Books = Book.GetAll() };
+
+            //calculate total number of pages
+            int totalPages = bookRepository.TotalPages();
+            bookInfos.Add($"\r\nTotal pages in repository: {totalPages:N0}");
+
             PrintStrings(bookInfos);
 
             //prevent quitting in debug mode
