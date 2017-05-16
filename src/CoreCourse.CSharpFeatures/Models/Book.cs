@@ -39,13 +39,18 @@ namespace CoreCourse.CSharpFeatures.Models
                 Pages = 83,
                 Sequel = null
             };
+            Book warandpeace = new Book {
+                Title = "War and Peace",
+                Pages = 1392,
+                Sequel = null
+            };
             Book programming = new Book {
                 Title = "C# Programming",
                 Pages = null,
                 Genre = "Programming",
                 Sequel = null
             };
-            return new Book[] { lotr1, lotr2, lotr3, littleprince, programming, null };
+            return new Book[] { lotr1, lotr2, lotr3, littleprince, programming, warandpeace, null };
         }
     }
 }

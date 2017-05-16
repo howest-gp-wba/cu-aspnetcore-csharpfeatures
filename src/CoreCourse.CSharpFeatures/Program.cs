@@ -1,6 +1,10 @@
 ﻿using CoreCourse.CSharpFeatures.Models;
 using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Diagnostics;
+using System.Threading;
+using System.Globalization;
 
 namespace CoreCourse.CSharpFeatures
 {
@@ -8,6 +12,8 @@ namespace CoreCourse.CSharpFeatures
     {
         static void Main(string[] args)
         {
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+
             List<string> bookInfos = new List<string>();
 
             foreach (Book book in Book.GetAll())
@@ -15,7 +21,7 @@ namespace CoreCourse.CSharpFeatures
                 string title = book?.Title ?? "[untitled book]";
                 int? pages = book?.Pages ?? 0;
                 string sequelTitle = book?.Sequel?.Title ?? "[no sequels]";
-                bookInfos.Add(string.Format("Title: {0}, Pages: {1}, Sequel: {2}", title, pages, sequelTitle));
+                bookInfos.Add($"Title: {title}, Pages: {pages:N0}, Sequel: {sequelTitle}");
             }
             PrintStrings(bookInfos);
 
