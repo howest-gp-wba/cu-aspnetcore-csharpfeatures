@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace CoreCourse.CSharpFeatures.Models
@@ -14,14 +15,13 @@ namespace CoreCourse.CSharpFeatures.Models
             return totalPages;
         }
 
-        public static IEnumerable<Book> GetByMinimumPages(
-            this IEnumerable<Book> bookCollection, int minimumPages)
+        public static IEnumerable<Book> GetByFilter(
+            this IEnumerable<Book> bookCollection, Func<Book, bool> selector)
         {
             foreach (Book book in bookCollection)
-                if ((book?.Pages ?? 0) >= minimumPages)
+                if (selector(book))
                     yield return book;
         }
-
     }
 }
 
