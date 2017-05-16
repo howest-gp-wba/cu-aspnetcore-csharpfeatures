@@ -31,13 +31,21 @@ namespace CoreCourse.CSharpFeatures
             var knownBooks = Book.GetAll();
 
             //calculate total pages of all known books
-            int numberOfknownBooksWithOver350p = knownBooks.GetByFilter(p => (p?.Pages ?? 0) > 350).Count();
-            int numberOfknownBooksWithLetterT = knownBooks.GetByFilter(p => p?.Title?[0] == 'T').Count();
-            int numberOfKnownBooksLentOut = knownBooks.GetByFilter(p => p?.IsLent == true).Count();
+            int numberOfknownBooksWithOver350p = knownBooks.Count(p => (p?.Pages ?? 0) > 350);
+            int numberOfknownBooksWithLetterT = knownBooks.Count(p => p?.Title?[0] == 'T');
+            int numberOfKnownBooksLentOut = knownBooks.Count(p => p?.IsLent == true);
+            string firstBookLent = knownBooks.FirstOrDefault(p => p?.IsLent == true)?.Title;
+            IEnumerable<string> lentOutKnownBooks =
+                knownBooks.Where(p => p?.IsLent == true).Select(p => p.Title);
+            
             bookInfos.Add($"# books with > 350 pages: {numberOfknownBooksWithOver350p:N0}");
             bookInfos.Add($"# books starting with 'T': {numberOfknownBooksWithLetterT:N0}");
             bookInfos.Add($"# books lent out: {numberOfKnownBooksLentOut:N0}");
+            bookInfos.Add($"\r\nFirst book lent out = {firstBookLent}");
 
+            foreach (string title in lentOutKnownBooks)
+                bookInfos.Add($">> Lent Out: {title}");
+            
             PrintStrings(bookInfos);
 
             //prevent quitting in debug mode

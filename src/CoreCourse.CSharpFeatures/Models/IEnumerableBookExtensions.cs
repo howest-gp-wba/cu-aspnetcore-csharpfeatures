@@ -15,13 +15,13 @@ namespace CoreCourse.CSharpFeatures.Models
             return totalPages;
         }
 
-        public static IEnumerable<Book> GetByFilter(
-            this IEnumerable<Book> bookCollection, Func<Book, bool> selector)
-        {
-            foreach (Book book in bookCollection)
-                if (selector(book))
-                    yield return book;
-        }
+        //public static IEnumerable<Book> GetByFilter(
+        //    this IEnumerable<Book> bookCollection, Func<Book, bool> selector)
+        //{
+        //    foreach (Book book in bookCollection)
+        //        if (selector(book))
+        //            yield return book;
+        //}
     }
 }
 
